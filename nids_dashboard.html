@@ -1,0 +1,18 @@
+<!-- nids_dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head><title>NIDS Dashboard</title></head>
+<body>
+<h2>Blackholed IPs</h2>
+<ul id="blocked"></ul>
+<script>
+let evt = new EventSource('/events');
+evt.onmessage = e => {
+  let ip = JSON.parse(e.data).ip;
+  let li = document.createElement('li');
+  li.textContent = ip;
+  document.getElementById('blocked').appendChild(li);
+};
+</script>
+</body>
+</html>
